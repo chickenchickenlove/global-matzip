@@ -27,28 +27,31 @@ class Coordinator:
         self._radius = (diameter / 2)
         self._now_position = Position(y1, x1)
 
-    def get_next_position(self) -> Position:
-        if self._now_position == Position(-1, -1):
-            return self._now_position
+        self.__is_first = True
 
-        if self.__end_of_the_south():
-            move_direction = self.__move_to_east if self.__possible_move_to_east() else self.__move_to_south
-            self.__move(move_direction)
-            self._now_position = self._now_position if self.__end_of_the_south() else Position(-1, -1)
-            return self._now_position
+    def __iter__(self):
+        return self
 
-        else:
-            self._now_position = Position(-1, -1)
-            return self._now_position
+    def __next__(self):
+        if self.__is_south_end() and self.__is_east_end():
+            raise StopIteration
 
-    def __end_of_the_south(self) -> bool:
-        return self._now_position.y > self._end_position.y
+        if self.__is_first:
+            self.__is_first = False
+            return self
 
-    def __possible_move_to_east(self) -> bool:
-        return self._now_position.x < self._end_position.x
+        self.__move_to_east() if not self.__is_east_end() else self.__move_to_south()
+        return self
 
-    def __move(self, move):
-        move()
+    def get_position(self) -> Position:
+        return self._now_position
+
+    def __is_south_end(self) -> bool:
+        return self._now_position.y < self._end_position.y
+
+    def __is_east_end(self) -> bool:
+        return self._now_position.x > self._end_position.x
+
 
     def __move_to_south(self) -> None:
         next_y, _ = move_south(self._now_position.y, self._start_position.x, self._radius)
@@ -59,16 +62,14 @@ class Coordinator:
         self._now_position = Position(self._now_position.y, next_x)
 
 
-def test1_class():
+def test2_class():
     y1 = 21.04378
     x1 = 105.81020
     y2 = 20.98680
     x2 = 105.86385
     RADIUS = 10000
 
-    sut = Coordinator(y1, x1, y2, x2, RADIUS)
+    for o in Coordinator(y1, x1, y2, x2, RADIUS):
+        print(f'{o.get_position() = }')
 
-    while (result := sut.get_next_position()) != Position(-1,-1):
-        print(result)
-
-# test1_class()
+test2_class()
