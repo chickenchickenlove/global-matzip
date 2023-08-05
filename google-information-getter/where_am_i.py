@@ -44,6 +44,9 @@ class Coordinator:
     def get_position(self) -> Position:
         return self._now_position
 
+    def get_position_with_tuple(self) -> tuple:
+        return self._now_position.y, self._now_position.x
+
     def __is_south_end(self) -> bool:
         return self._now_position.y < self._end_position.y
 
@@ -70,4 +73,4 @@ def test2_class():
     for o in Coordinator(y1, x1, y2, x2, RADIUS):
         print(f'{o.get_position() = }')
 
-test2_class()
+# test2_class()
