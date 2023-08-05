@@ -4,9 +4,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Position:
-    '''
-    (-1, -1) is None.
-    '''
+
     y: float
     x: float
 
