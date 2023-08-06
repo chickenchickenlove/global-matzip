@@ -17,6 +17,18 @@ $ python google_information_getter.py <config_file_path>
 ![img.png](img.png)
 
 
+### 구역 검색 방법 방법
+- 입력된 (위도, 경도)는 다음과 같이 사용됩니다.
+- 1. 위도 / 경도를 Radius를 기준으로 잘라서 각 블록을 생성함. 
+- 2. (좌 -> 우)로 이동 후, 아래로 이동해서 (좌 -> 우)로 이동함. (0,0) -> (0,1) -> (1,0) -> (1,1) 순으로 이동
+- 각 블록의 중심에서 radius를 기준으로 검색합니다. 따라서 겹치지 않는 부분이 발생하는데, 이 부분은 Diameter를 조절해서 중복 검색으로 정확성을 올릴 수 있습니다. 
+         
+![img_2.png](img_2.png)
+
+
+
+
+
 ### Config 파일
 - `diameter` : 구역을 나눌 직경. 
 - `city` : 검색할 도시. position_constant에 있는 값입니다. 
