@@ -36,5 +36,6 @@ is_async: False
 ```
 
 ### 도시 추가하는 방법
-- git clone 후, position_constant.py 파일에 양식에 맞게 도시 + 좌표를 추가하세요.
+- `git clone` 후, `position_constant.py` 파일에 양식에 맞게 도시 + 좌표를 추가하세요.
+- Config 파일에 값을 설정한 후, 파이썬 스크립트를 실행시켜주세요.
 
