@@ -1,4 +1,5 @@
 import asyncio
+import sys
 
 import yaml
 from where_am_i import Coordinator
@@ -19,8 +20,11 @@ def valid(config: dict, city_coordinator: CityCoordinator):
 
     return is_valid
 
+
 def main():
-    config = load_config(file_path='config.yaml')
+
+    config_file_path = sys.argv[1]
+    config = load_config(file_path=config_file_path)
     valid(config, CityCoordinator())
 
     city_names = config['search']['city']
@@ -42,4 +46,6 @@ def main():
 
 
 if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        raise Exception('config file is need. for example, $python google_information_getter.py config.yaml')
     main()

@@ -1,0 +1,9 @@
+google:
+  api_key: <YOUR_API_KEY>
+search:
+  diameter: 25000
+  city:
+    - BALI
+    - HANOI
+  find_type: restaurant
+is_async: False
