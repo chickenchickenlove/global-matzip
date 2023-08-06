@@ -74,3 +74,15 @@ def test2_class():
         print(f'{o.get_position() = }')
 
 # test2_class()
+
+
+# for minus test case.
+def test3_class():
+    y1, x1, y2, x2 = (-8.063314, 114.468484, -8.818296, 115.682313)
+    RADIUS = 25000
+
+    cnt = 0
+    for o in Coordinator(y1, x1, y2, x2, RADIUS):
+        cnt += 1
+        print(f'{o.get_position() = }')
+    print(cnt)
