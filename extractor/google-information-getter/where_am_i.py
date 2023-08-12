@@ -53,7 +53,6 @@ class Coordinator:
     def __is_east_end(self) -> bool:
         return self._now_position.x > self._end_position.x
 
-
     def __move_to_south(self) -> None:
         next_y, _ = move_south(self._now_position.y, self._start_position.x, self._radius)
         self._now_position = Position(next_y, self._start_position.x)

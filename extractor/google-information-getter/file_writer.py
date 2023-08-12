@@ -21,6 +21,11 @@ class Writer:
         return self._dir_path + '/' + '-'.join([self._city_name, str(uuid.uuid4())])
 
     def write(self, response_list: list[dict], file_path):
+
+        def write_each_line(line, file):
+            file.write(line)
+            file.write('\n')
+
         with open(file_path, 'a', encoding='utf-8') as file:
             for response_dict in response_list:
                 name = response_dict['name']
@@ -28,8 +33,4 @@ class Writer:
                 rating = 0 if 'rating' not in response_dict else response_dict['rating']
 
                 data = '/'.join(map(str, [name, vicinity, rating]))
-                self.__write_each_line(data, file)
-
-    def __write_each_line(self, data, file):
-        file.write(data)
-        file.write('\n')
+                write_each_line(data, file)
